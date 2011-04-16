@@ -67,6 +67,9 @@ CONFIGURE_ARGS += \
 	--enable-bundled-libtom
 
 TARGET_CFLAGS += -DARGTYPE=3 -ffunction-sections -fdata-sections
+ifdef CONFIG_NOMMU
+TARGET_CFLAGS += -D__uClinux__ -DDEBUG_NOFORK
+endif
 TARGET_LDFLAGS += -Wl,--gc-sections
 
 define Build/Configure
