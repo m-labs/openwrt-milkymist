@@ -424,6 +424,9 @@ Build/Compile = $(Build/Compile/Default)
 
 define Package/base-files/install
 	$(CP) ./files/* $(1)/
+	$(if $(CONFIG_NOMMU), \
+		$(CP) ./files-nommu/* $(1)/ \
+	)
 	if [ -d $(GENERIC_PLATFORM_DIR)/base-files/. ]; then \
 		$(CP) $(GENERIC_PLATFORM_DIR)/base-files/* $(1)/; \
 	fi
