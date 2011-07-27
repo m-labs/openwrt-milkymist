@@ -22,11 +22,17 @@ include $(INCLUDE_DIR)/package.mk
 CONFIGURE_PREFIX=$(STAGING_DIR)/host
 export GLOBAL_LIBDIR=$(STAGING_DIR)/usr/lib
 
+CONFIGURE_ARGS+=--disable-ltdl-install
+
 define Package/libltdl
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=A generic dynamic object loading library
   URL:=http://www.gnu.org/software/libtool/
+endef
+
+define Build/Compile
+	true
 endef
 
 define Build/InstallDev
@@ -37,8 +43,8 @@ define Build/InstallDev
 		exec_prefix="$(2)" \
 		install
 	$(INSTALL_DIR) $(1)/usr/lib $(1)/usr/include
-	mv $(2)/lib/* $(1)/usr/lib/
-	mv $(2)/include/* $(1)/usr/include/
+#	mv $(2)/lib/* $(1)/usr/lib/
+#	mv $(2)/include/* $(1)/usr/include/
 endef
 
 define Package/libltdl/install

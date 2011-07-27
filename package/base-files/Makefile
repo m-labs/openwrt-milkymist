@@ -360,6 +360,7 @@ ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
   endif
 endif
 
+ifneq (0,0)
 ifneq ($(BUILD_LIBGCC),)
   define Build/Compile/uClibc
 	$(SCRIPT_DIR)/relink-lib.sh \
@@ -415,7 +416,7 @@ else
     endef
   endif
 endif
-
+endif
 define Build/Compile/Default
 	$(call Build/Compile/libgcc)
 	$(call Build/Compile/$(LIBC))
@@ -491,23 +492,23 @@ endef
 ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
 
   define Package/libgcc/install
-	$(INSTALL_DIR) $(1)/lib
-	$(CP) $(TOOLCHAIN_DIR)/lib/libgcc_s.so.* $(1)/lib/
+#	$(INSTALL_DIR) $(1)/lib
+#	$(CP) $(TOOLCHAIN_DIR)/lib/libgcc_s.so.* $(1)/lib/
   endef
 
   define Package/libgfortran/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(TOOLCHAIN_DIR)/lib/libgfortran.so.* $(1)/usr/lib/
+#	$(INSTALL_DIR) $(1)/usr/lib
+#	$(CP) $(TOOLCHAIN_DIR)/lib/libgfortran.so.* $(1)/usr/lib/
   endef
 
   define Package/libssp/install
-	$(INSTALL_DIR) $(1)/lib
-	$(CP) $(TOOLCHAIN_DIR)/lib/libssp.so.* $(1)/lib/
+#	$(INSTALL_DIR) $(1)/lib
+#	$(CP) $(TOOLCHAIN_DIR)/lib/libssp.so.* $(1)/lib/
   endef
 
   define Package/libstdcpp/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(TOOLCHAIN_DIR)/lib/libstdc++.so.* $(1)/usr/lib/
+#	$(INSTALL_DIR) $(1)/usr/lib
+#	$(CP) $(TOOLCHAIN_DIR)/lib/libstdc++.so.* $(1)/usr/lib/
   endef
 
   use_libutil=$(if $(CONFIG_USE_GLIBC)$(CONFIG_EGLIBC_OPTION_EGLIBC_UTMP),libutil)
@@ -535,27 +536,27 @@ ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
   endef
 
   define Package/uClibc/install
-	$(INSTALL_DIR) $(1)/lib
-	$(CP) \
-		$(TOOLCHAIN_DIR)/lib/ld*-uClibc.so.* \
-		$(TOOLCHAIN_DIR)/lib/ld*-uClibc-$(LIBC_SO_VERSION).so \
-		$(1)/lib/
-	$(CP) \
-		$(TOOLCHAIN_DIR)/lib/libc.so.* \
-		$(TOOLCHAIN_DIR)/lib/libuClibc-$(LIBC_SO_VERSION).so \
-		$(1)/lib/
-	for file in libcrypt libdl libm libutil; do \
-		$(CP) \
-			$(TOOLCHAIN_DIR)/lib/$$$$file.so.* \
-			$(TOOLCHAIN_DIR)/lib/$$$$file-$(LIBC_SO_VERSION).so \
-			$(1)/lib/; \
-	done
+#	$(INSTALL_DIR) $(1)/lib
+#	$(CP) \
+#		$(TOOLCHAIN_DIR)/lib/ld*-uClibc.so.* \
+#		$(TOOLCHAIN_DIR)/lib/ld*-uClibc-$(LIBC_SO_VERSION).so \
+#		$(1)/lib/
+#	$(CP) \
+#		$(TOOLCHAIN_DIR)/lib/libc.so.* \
+#		$(TOOLCHAIN_DIR)/lib/libuClibc-$(LIBC_SO_VERSION).so \
+#		$(1)/lib/
+#	for file in libcrypt libdl libm libutil; do \
+#		$(CP) \
+#			$(TOOLCHAIN_DIR)/lib/$$$$file.so.* \
+#			$(TOOLCHAIN_DIR)/lib/$$$$file-$(LIBC_SO_VERSION).so \
+#			$(1)/lib/; \
+#	done
 
-	$(CP) \
-		$(PKG_BUILD_DIR)/libuClibc-* \
-		$(PKG_BUILD_DIR)/libm-* \
-		$(PKG_BUILD_DIR)/libcrypt-* \
-		$(1)/lib/
+#	$(CP) \
+#		$(PKG_BUILD_DIR)/libuClibc-* \
+#		$(PKG_BUILD_DIR)/libm-* \
+#		$(PKG_BUILD_DIR)/libcrypt-* \
+#		$(1)/lib/
   endef
 
   define Package/libc/install
@@ -563,6 +564,7 @@ ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
   endef
 
   define Package/libc/install_lib
+	$(INSTALL_DIR) $(1)/lib
 	$(CP) $(filter-out %/libdl_pic.a %/libpthread_pic.a %/libresolv_pic.a,$(wildcard $(TOOLCHAIN_DIR)/lib/lib*.a)) $(1)/lib/
 	$(if $(wildcard $(TOOLCHAIN_DIR)/lib/libc_so.a),$(CP) $(TOOLCHAIN_DIR)/lib/libc_so.a $(1)/lib/libc_pic.a)
 	$(if $(LIBGCC_MAP), \
