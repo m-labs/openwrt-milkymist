@@ -172,6 +172,7 @@ sub target_config_features(@) {
 		/ramdisk/ and $ret .= "\tselect USES_INITRAMFS\n";
 		/powerpc64/ and $ret .= "\tselect powerpc64\n";
 		/nommu/ and $ret .= "\tselect NOMMU\n";
+		/binfmt_flat/ and $ret .= "\tselect BINFMT_FLAT\n";
 	}
 	return $ret;
 }

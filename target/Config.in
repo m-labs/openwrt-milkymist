@@ -63,6 +63,9 @@ config PROFILE_KCONFIG
 config NOMMU
 	bool
 
+config BINFMT_FLAT
+	bool
+
 # Architecture selection
 
 config arm

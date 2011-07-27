@@ -28,7 +28,7 @@
 curdir:=toolchain
 
 # subdirectories to descend into
-$(curdir)/builddirs := $(if $(CONFIG_GDB),gdb) $(if $(CONFIG_INSIGHT),insight) $(if $(CONFIG_EXTERNAL_TOOLCHAIN),,kernel-headers binutils gcc/minimal gcc/initial gcc/final $(LIBC) $(if $(CONFIG_GLIBC_PORTS),glibc-ports))
+$(curdir)/builddirs := $(if $(CONFIG_GDB),gdb) $(if $(CONFIG_INSIGHT),insight) $(if $(CONFIG_EXTERNAL_TOOLCHAIN),,kernel-headers binutils gcc/minimal gcc/initial gcc/final $(LIBC) $(if $(CONFIG_GLIBC_PORTS),glibc-ports) $(if $(CONFIG_BINFMT_FLAT),elf2flt))
 $(curdir)/builddirs-compile:=$($(curdir)/builddirs-prepare)
 $(curdir)/builddirs-install:=$($(curdir)/builddirs-compile)
 
@@ -46,6 +46,12 @@ ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
   ifneq ($(CONFIG_GLIBC_PORTS),)
     $(curdir)/glibc/prepare:=$(curdir)/glibc-ports/prepare
   endif
+
+  ifneq ($(CONFIG_BINFMT_FLAT),)
+	$(curdir)/elf2flt/compile:=$(curdir)/gcc/final/compile
+	$(curdir)/elf2flt/install:=$(curdir)/gcc/final/install
+  endif
+
 endif
 
 ifdef CONFIG_GCC_VERSION_LLVM
