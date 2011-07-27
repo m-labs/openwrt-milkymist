@@ -124,9 +124,9 @@ ifneq ($(CONFIG_TARGET_ROOTFS_EXT4FS),)
 # generate an ext2 fs
 	$(STAGING_DIR_HOST)/bin/genext2fs -U -b $(E2SIZE) -N $(CONFIG_TARGET_ROOTFS_MAXINODE) -d $(TARGET_DIR)/ $(KDIR)/root.ext4
 # convert it to ext4
-	$(STAGING_DIR_HOST)/bin/tune2fs -O extents,uninit_bg,dir_index $(KDIR)/root.ext4
+#	$(STAGING_DIR_HOST)/bin/tune2fs -O extents,uninit_bg,dir_index $(KDIR)/root.ext4
 # fix it up
-	$(STAGING_DIR_HOST)/bin/e2fsck -fy $(KDIR)/root.ext4
+#	$(STAGING_DIR_HOST)/bin/e2fsck -fy $(KDIR)/root.ext4
 	$(call Image/Build,ext4)
   endef
 endif
