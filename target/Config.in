@@ -88,6 +88,10 @@ config i386
 config i686
 	bool 
 
+config lm32
+	select BIG_ENDIAN
+	bool
+
 config m68k
 	bool
 
@@ -146,6 +150,7 @@ config ARCH
 	default "cris"      if cris
 	default "i386"      if i386
 	default "i686"      if i686
+	default "lm32"      if lm32
 	default "m68k"      if m68k
 	default "mips"      if mips
 	default "mipsel"    if mipsel

@@ -1,0 +1,25 @@
+Index: gcc-4.5.2/gcc/config/lm32/uclinux-elf.h
+===================================================================
+--- gcc-4.5.2.orig/gcc/config/lm32/uclinux-elf.h	2011-01-23 12:21:15.000000000 +0100
++++ gcc-4.5.2/gcc/config/lm32/uclinux-elf.h	2011-01-23 12:22:11.000000000 +0100
+@@ -80,6 +80,3 @@
+ #define LINK_GCC_C_SEQUENCE_SPEC \
+   "%{static:--start-group} %G %L %{static:--end-group}%{!static:%G}"
+ 
+-#undef  CC1_SPEC
+-#define CC1_SPEC "%{G*} %{!fno-PIC:-fPIC}"
+-
+Index: gcc-4.5.2/libgcc/config.host
+===================================================================
+--- gcc-4.5.2.orig/libgcc/config.host	2011-01-23 12:21:08.000000000 +0100
++++ gcc-4.5.2/libgcc/config.host	2011-01-23 12:21:56.000000000 +0100
+@@ -365,7 +365,7 @@
+ 	;;
+ lm32-*-uclinux*)
+         extra_parts="crtbegin.o crtend.o crtbeginS.o crtendS.o crtbeginT.o"
+-        tmake_file="lm32/t-lm32 lm32/t-uclinux t-softfp"
++        tmake_file="lm32/t-lm32 t-softfp"
+ 	;;	
+ m32r-*-elf*|m32r-*-rtems*)
+  	;;
+

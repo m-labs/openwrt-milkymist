@@ -1,0 +1,34 @@
+Index: binutils-2.20.1/bfd/config.bfd
+===================================================================
+--- binutils-2.20.1.orig/bfd/config.bfd	2011-01-23 12:03:43.000000000 +0100
++++ binutils-2.20.1/bfd/config.bfd	2011-01-23 12:04:15.000000000 +0100
+@@ -744,12 +744,12 @@
+ 
+   lm32-*-elf | lm32-*-rtems*)
+     targ_defvec=bfd_elf32_lm32_vec
+-    targ_selvecs=bfd_elf32_lm32fdpic_vec
++    targ_selvecs="bfd_elf32_lm32_vec bfd_elf32_lm32fdpic_vec"
+     ;;
+     
+   lm32-*-*linux*)
+-    targ_defvec=bfd_elf32_lm32fdpic_vec
+-    targ_selvecs=bfd_elf32_lm32_vec
++    targ_defvec=bfd_elf32_lm32_vec
++    targ_selvecs="bfd_elf32_lm32_vec"
+     ;;
+     
+   m32c-*-elf | m32c-*-rtems*)
+Index: binutils-2.20.1/ld/configure.tgt
+===================================================================
+--- binutils-2.20.1.orig/ld/configure.tgt	2011-01-23 12:03:57.000000000 +0100
++++ binutils-2.20.1/ld/configure.tgt	2011-01-23 12:04:21.000000000 +0100
+@@ -306,7 +306,8 @@
+ 			;;
+ iq2000-*-elf)           targ_emul=elf32iq2000 ; targ_extra_emuls="elf32iq10"
+ 			;;
+-lm32-*-*linux*)         targ_emul=elf32lm32fd ;;
++lm32-*-*linux*)         targ_emul=elf32lm32
++                        ;;
+ lm32-*-*)               targ_emul=elf32lm32 ; targ_extra_emuls="elf32lm32fd" 
+                         ;;
+ m32c-*-elf | m32c-*-rtems*)

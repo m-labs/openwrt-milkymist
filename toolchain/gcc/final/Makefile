@@ -4,7 +4,7 @@ include ../common.mk
 
 GCC_CONFIGURE += \
 	--enable-languages=$(TARGET_LANGUAGES) \
-	--enable-shared \
+	--disable-shared \
 	--enable-threads \
 	--with-slibdir=$(TOOLCHAIN_DIR)/lib
 

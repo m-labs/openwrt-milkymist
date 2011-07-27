@@ -410,6 +410,7 @@ menuconfig DEVEL
 
 	config KERNEL_GIT_CLONE_URI
 		string "Enter git repository to clone" if DEVEL
+		default "git://github.com/milkymist/linux-milkymist.git" if TARGET_lm32
 		default ""
 		help
 		  Enter the full git repository path i.e.:

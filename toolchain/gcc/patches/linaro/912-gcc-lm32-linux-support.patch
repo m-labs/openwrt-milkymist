@@ -1,0 +1,40 @@
+diff --git a/gcc-linaro-4.5-2011.02-0/gcc/config/t-linux b/gcc-linaro-4.5-2011.02-0/gcc/config/t-linux
+index 1a7d79e..3e75091 100644
+--- a/gcc/config/t-linux
++++ b/gcc/config/t-linux
+@@ -18,9 +18,9 @@
+ # <http://www.gnu.org/licenses/>.
+ 
+ # Compile crtbeginS.o and crtendS.o with pic.
+-CRTSTUFF_T_CFLAGS_S = $(CRTSTUFF_T_CFLAGS) -fPIC
++CRTSTUFF_T_CFLAGS_S = $(CRTSTUFF_T_CFLAGS)
+ # Compile libgcc2.a with pic.
+-TARGET_LIBGCC2_CFLAGS = -fPIC
++TARGET_LIBGCC2_CFLAGS =
+ 
+ # Override t-slibgcc-elf-ver to export some libgcc symbols with
+ # the symbol versions that glibc used.
+diff -urN gcc-linaro-4.5-2011.06-0.orig//gcc/config.gcc gcc-linaro-4.5-2011.06-0/gcc/config.gcc
+--- gcc-linaro-4.5-2011.06-0.orig//gcc/config.gcc	2011-07-27 12:58:54.428532217 +0200
++++ gcc-linaro-4.5-2011.06-0/gcc/config.gcc	2011-07-27 13:02:24.750532210 +0200
+@@ -1555,7 +1555,7 @@
+ 	tmake_file="${tmake_file} lm32/t-lm32 lm32/t-fprules-softfp soft-fp/t-softfp"
+ 	tmake_file="${tmake_file} t-rtems"
+          ;;
+-lm32-*-uclinux*)
++lm32-*-*linux*)
+         tm_file="dbxelf.h elfos.h ${tm_file} linux.h lm32/uclinux-elf.h"
+ 	tmake_file="${tmake_file} lm32/t-lm32 lm32/t-fprules-softfp soft-fp/t-softfp"
+         ;;
+diff -urN gcc-linaro-4.5-2011.06-0.orig//libgcc/config.host gcc-linaro-4.5-2011.06-0/libgcc/config.host
+--- gcc-linaro-4.5-2011.06-0.orig//libgcc/config.host	2011-07-27 12:58:50.699532218 +0200
++++ gcc-linaro-4.5-2011.06-0/libgcc/config.host	2011-07-27 13:02:48.029532210 +0200
+@@ -366,7 +366,7 @@
+         extra_parts="crtbegin.o crtend.o crti.o crtn.o"
+         tmake_file="lm32/t-lm32 lm32/t-elf t-softfp"
+ 	;;
+-lm32-*-uclinux*)
++lm32-*-linux*)
+         extra_parts="crtbegin.o crtend.o crtbeginS.o crtendS.o crtbeginT.o"
+         tmake_file="lm32/t-lm32 t-softfp"
+ 	;;	

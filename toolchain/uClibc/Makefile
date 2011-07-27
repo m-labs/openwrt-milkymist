@@ -115,8 +115,8 @@ define Host/Compile
 	$(SED) 's,^CROSS=.*,CROSS=$(TARGET_CROSS),g' $(HOST_BUILD_DIR)/Rules.mak
 	$(UCLIBC_MAKE) $(TOOLCHAIN_JOBS) PREFIX= all
 	$(UCLIBC_MAKE) PREFIX="$(TOOLCHAIN_DIR)/" install_runtime install_dev
-	$(CP) $(HOST_BUILD_DIR)/libc/libc_so.a $(TOOLCHAIN_DIR)/lib/
-	$(CP) $(HOST_BUILD_DIR)/libpthread/*/libpthread_so.a $(TOOLCHAIN_DIR)/lib/
+#	$(CP) $(HOST_BUILD_DIR)/libc/libc_so.a $(TOOLCHAIN_DIR)/lib/
+#	$(CP) $(HOST_BUILD_DIR)/libpthread/*/libpthread_so.a $(TOOLCHAIN_DIR)/lib/
 	( cd $(TOOLCHAIN_DIR) ; \
 		for d in lib usr/lib ; do \
 		  for f in libc.so libpthread.so libgcc_s.so ; do \
@@ -135,13 +135,13 @@ define Host/Install
 	$(call Host/SetToolchainInfo)
 	$(UCLIBC_MAKE) PREFIX= utils
 	$(INSTALL_DIR) $(TOOLCHAIN_DIR)/bin
-	$(INSTALL_BIN) \
-		$(HOST_BUILD_DIR)/utils/ldd \
-		$(TOOLCHAIN_DIR)/bin/
-	$(INSTALL_DIR) $(TOOLCHAIN_DIR)/sbin
-	$(INSTALL_BIN) \
-		$(HOST_BUILD_DIR)/utils/ldconfig \
-		$(TOOLCHAIN_DIR)/sbin/
+#	$(INSTALL_BIN) \
+#		$(HOST_BUILD_DIR)/utils/ldd \
+#		$(TOOLCHAIN_DIR)/bin/
+#	$(INSTALL_DIR) $(TOOLCHAIN_DIR)/sbin
+#	$(INSTALL_BIN) \
+#		$(HOST_BUILD_DIR)/utils/ldconfig \
+#		$(TOOLCHAIN_DIR)/sbin/
 endef
 
 define Host/Clean
