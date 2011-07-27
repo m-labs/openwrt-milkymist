@@ -36,11 +36,11 @@ ifeq ($(strip $(CONFIG_EXTERNAL_KERNEL_TREE)),"")
   else
     ifeq ($(strip $(CONFIG_KERNEL_GIT_LOCAL_REPOSITORY)),"")
 define Kernel/Prepare/Default
-	git clone $(CONFIG_KERNEL_GIT_CLONE_URI) $(LINUX_DIR)
+	git clone --depth 1 $(CONFIG_KERNEL_GIT_CLONE_URI) $(LINUX_DIR)
     endef
   else
     define Kernel/Prepare/Default
-	git clone --reference $(CONFIG_KERNEL_GIT_LOCAL_REPOSITORY) $(CONFIG_KERNEL_GIT_CLONE_URI) $(LINUX_DIR)
+	git clone --depth 1 --reference $(CONFIG_KERNEL_GIT_LOCAL_REPOSITORY) $(CONFIG_KERNEL_GIT_CLONE_URI) $(LINUX_DIR)
     endef
   endif
 endif
