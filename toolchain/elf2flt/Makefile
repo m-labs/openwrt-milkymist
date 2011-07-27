@@ -17,8 +17,8 @@ BINUTILS_DIR := $(BUILD_DIR_TOOLCHAIN)/binutils
 HOST_CONFIGURE_ARGS+= \
 	--target=$(REAL_GNU_TARGET_NAME) \
 	--with-bfd-include-dir=$(BINUTILS_DIR)/include/ \
-	--with-libbfd=$(TOOLCHAIN_DIR)/lib/libbfd.a \
-	--with-libiberty=$(TOOLCHAIN_DIR)/lib/libiberty.a \
+	--with-libbfd=$(BINUTILS_DIR)/bfd/libbfd.a \
+	--with-libiberty=$(BINUTILS_DIR)/libiberty/libiberty.a \
 	--disable-emit-relocs --enable-always-reloc-text
 
 HOST_CFLAGS+=-I$(BINUTILS_DIR)/bfd
