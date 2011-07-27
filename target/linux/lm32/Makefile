@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 ARCH:=lm32
 BOARD:=lm32
 BOARDNAME:=Milkymist
-FEATURES:=targz usb jffs2 nommu ramdisk binfmt_flat
+FEATURES:=targz usb jffs2 nommu binfmt_flat ext4
 
 LINUX_VERSION:=3.0
 
