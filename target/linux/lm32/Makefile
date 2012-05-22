@@ -13,7 +13,7 @@ FEATURES:=usb nommu binfmt_flat ext4
 
 LINUX_VERSION:=3.0
 
-DEVICE_TYPE:=vj-station
+DEVICE_TYPE:=video-synthesizer
 
 include $(INCLUDE_DIR)/target.mk
 
