@@ -16,6 +16,8 @@ LINUX_VERSION:=3.0
 DEVICE_TYPE:=vj-station
 
 include $(INCLUDE_DIR)/target.mk
+DEFAULT_CFLAGS+=-mmultiply-enabled -mdivide-enabled -mbarrel-shift-enabled -msign-extend-enabled
+
 
 KERNELNAME:="simpleImage.milkymist_one"
 DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd
